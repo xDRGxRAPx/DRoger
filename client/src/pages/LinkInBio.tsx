@@ -3,12 +3,10 @@ import { Link } from "wouter";
 import { 
   Instagram, 
   Youtube, 
-  Music, 
   Mail, 
-  PlayCircle,
-  Video,
+  Phone,
   ArrowLeft,
-  ShoppingBag
+  Briefcase
 } from "lucide-react";
 
 import portraitImg from "@/assets/images/artist-portrait.png";
@@ -16,13 +14,11 @@ import bgImg from "@/assets/images/hero-bg.png";
 
 export default function LinkInBio() {
   const links = [
-    { title: "Ouça o Novo Single", icon: PlayCircle, url: "#", primary: true },
-    { title: "Beatmaker Pro FL Studio", icon: ShoppingBag, url: "#", primary: false },
-    { title: "Assistir Último Clipe", icon: Video, url: "#", primary: false },
-    { title: "Spotify - Família Ordem Sul", icon: Music, url: "#", primary: false },
-    { title: "Instagram", icon: Instagram, url: "#", primary: false },
-    { title: "YouTube Channel", icon: Youtube, url: "#", primary: false },
-    { title: "Contato para Shows/Beats", icon: Mail, url: "#", primary: false },
+    { title: "Orçamento para Projetos/Produções", icon: Briefcase, url: "#", primary: true },
+    { title: "Contato Institucional / Shows", icon: Mail, url: "#", primary: false },
+    { title: "WhatsApp Profissional", icon: Phone, url: "https://wa.me/5584000000000", primary: false },
+    { title: "Instagram Oficial", icon: Instagram, url: "#", primary: false },
+    { title: "Canal do YouTube", icon: Youtube, url: "#", primary: false },
   ];
 
   return (
@@ -38,8 +34,8 @@ export default function LinkInBio() {
         {/* Back Button */}
         <div className="w-full flex justify-start mb-8">
           <Link href="/">
-            <button className="flex items-center text-sm font-display uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors">
-              <ArrowLeft className="w-4 h-4 mr-2" /> Voltar ao Site
+            <button className="flex items-center text-xs font-display uppercase tracking-widest text-muted-foreground hover:text-primary transition-colors">
+              <ArrowLeft className="w-4 h-4 mr-2" /> Voltar ao Portfólio
             </button>
           </Link>
         </div>
@@ -51,18 +47,21 @@ export default function LinkInBio() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="w-28 h-28 rounded-full border-2 border-primary p-1 mb-4">
+          <div className="w-28 h-28 border-2 border-primary p-1 mb-6 rounded-none">
             <img 
               src={portraitImg} 
               alt="D Roger" 
-              className="w-full h-full rounded-full object-cover"
+              className="w-full h-full object-cover"
             />
           </div>
-          <h1 className="text-3xl font-display font-bold uppercase tracking-widest">
+          <h1 className="text-3xl font-display font-bold uppercase tracking-widest mb-1">
             D<span className="text-primary">ROGER</span>
           </h1>
-          <p className="text-muted-foreground mt-2 font-light">
-            Artista • Beatmaker • Produtor
+          <p className="text-primary font-medium tracking-widest uppercase text-xs mb-3">
+            Artista | Produtor Musical | Agente Cultural
+          </p>
+          <p className="text-muted-foreground font-light text-sm px-6">
+            18 anos fortalecendo a cultura hip hop da Zona Sul de Natal.
           </p>
         </motion.div>
 
@@ -72,10 +71,10 @@ export default function LinkInBio() {
             <motion.a
               key={index}
               href={link.url}
-              className={`flex items-center p-4 rounded-xl border transition-all duration-300 ${
+              className={`flex items-center p-4 border transition-all duration-300 ${
                 link.primary 
-                  ? "bg-primary/10 border-primary text-primary hover:bg-primary hover:text-primary-foreground shadow-[0_0_20px_rgba(200,150,50,0.15)]" 
-                  : "bg-card/50 border-border/50 text-foreground hover:border-primary/50 hover:bg-card/80"
+                  ? "bg-primary/10 border-primary text-primary hover:bg-primary hover:text-primary-foreground shadow-[0_0_20px_rgba(200,150,50,0.15)] rounded-none" 
+                  : "bg-card/50 border-border/50 text-foreground hover:border-primary/50 hover:bg-card/80 rounded-none"
               }`}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -83,10 +82,10 @@ export default function LinkInBio() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <div className={`flex items-center justify-center w-10 h-10 rounded-lg ${link.primary ? "bg-primary text-primary-foreground" : "bg-muted"}`}>
+              <div className={`flex items-center justify-center w-10 h-10 rounded-none ${link.primary ? "bg-primary text-primary-foreground" : "bg-muted"}`}>
                 <link.icon className="w-5 h-5" />
               </div>
-              <span className="font-medium ml-4 flex-1 text-center pr-10">
+              <span className="font-medium ml-4 flex-1 text-center pr-10 text-sm tracking-wide uppercase">
                 {link.title}
               </span>
             </motion.a>
@@ -95,13 +94,13 @@ export default function LinkInBio() {
 
         {/* Footer */}
         <motion.div 
-          className="mt-12 text-center"
+          className="mt-16 text-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 1 }}
         >
-          <span className="text-2xl font-display font-bold tracking-wider opacity-20">
-            D<span className="text-primary">R</span>
+          <span className="text-xl font-display font-bold tracking-widest opacity-20 uppercase">
+            Ordem Sul
           </span>
         </motion.div>
       </div>

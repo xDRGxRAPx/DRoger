@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Menu, X, Mic2, Disc3, FolderKanban, Mail, User } from "lucide-react";
+import { Menu, X, Users, Building2, BarChart3, Mail, User } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -17,11 +17,11 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Bio", href: "#bio", icon: User },
-    { name: "Projetos", href: "#projects", icon: FolderKanban },
-    { name: "Música", href: "#music", icon: Disc3 },
-    { name: "Serviços", href: "#services", icon: Mic2 },
-    { name: "Contato", href: "#contact", icon: Mail },
+    { name: "Institucional", href: "#bio", icon: User },
+    { name: "Impacto", href: "#impacto", icon: BarChart3 },
+    { name: "Projeto Cultural", href: "#projeto-cultural", icon: Users },
+    { name: "Infraestrutura", href: "#infraestrutura", icon: Building2 },
+    { name: "Contato", href: "#contato", icon: Mail },
   ];
 
   const handleNavClick = (href: string) => {
@@ -45,7 +45,7 @@ export default function Navbar() {
       >
         <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
           <Link href="/">
-            <span className="text-2xl font-display font-bold tracking-wider cursor-pointer">
+            <span className="text-2xl font-display font-bold tracking-widest cursor-pointer">
               D<span className="text-primary">ROGER</span>
             </span>
           </Link>
@@ -56,13 +56,13 @@ export default function Navbar() {
               <button
                 key={link.name}
                 onClick={() => handleNavClick(link.href)}
-                className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors uppercase tracking-widest"
+                className="text-xs font-medium text-foreground/80 hover:text-primary transition-colors uppercase tracking-widest"
               >
                 {link.name}
               </button>
             ))}
             <Link href="/links">
-              <span className="px-5 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-full hover:bg-primary/90 transition-all cursor-pointer shadow-[0_0_15px_rgba(200,150,50,0.3)] hover:shadow-[0_0_25px_rgba(200,150,50,0.5)] uppercase tracking-wider">
+              <span className="px-5 py-2 text-xs font-bold bg-primary text-primary-foreground rounded-none hover:bg-primary/90 transition-all cursor-pointer shadow-[0_0_15px_rgba(200,150,50,0.3)] hover:shadow-[0_0_25px_rgba(200,150,50,0.5)] uppercase tracking-widest">
                 Links
               </span>
             </Link>
@@ -100,14 +100,14 @@ export default function Navbar() {
                 <button
                   key={link.name}
                   onClick={() => handleNavClick(link.href)}
-                  className="text-2xl font-display font-medium text-foreground hover:text-primary transition-colors uppercase tracking-widest"
+                  className="text-xl font-display font-medium text-foreground hover:text-primary transition-colors uppercase tracking-widest"
                 >
                   {link.name}
                 </button>
               ))}
               <div className="h-px w-12 bg-border my-4" />
               <Link href="/links" onClick={() => setMobileMenuOpen(false)}>
-                <span className="text-xl font-display font-medium text-primary uppercase tracking-widest cursor-pointer">
+                <span className="text-lg font-display font-medium text-primary uppercase tracking-widest cursor-pointer">
                   Árvore de Links
                 </span>
               </Link>

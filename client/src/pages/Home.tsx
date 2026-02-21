@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/layout/Navbar";
 import MobileNav from "@/components/layout/MobileNav";
-import { ArrowRight, Play, ExternalLink, Instagram, Youtube, Twitter, Mail, Code } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { ArrowRight, ExternalLink, Instagram, Youtube, Mail, Phone, MapPin, Building2, Users, Radio, Headphones } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 import heroImg from "@/assets/images/hero-bg.png";
@@ -10,10 +9,25 @@ import portraitImg from "@/assets/images/artist-portrait.png";
 import studioImg from "@/assets/images/studio-setup.png";
 
 const fadeInUp = {
-  initial: { opacity: 0, y: 40 },
+  initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-100px" },
-  transition: { duration: 0.6, ease: "easeOut" as const }
+  transition: { duration: 0.7, ease: "easeOut" as const }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15
+    }
+  }
+};
+
+const itemEffect = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } }
 };
 
 export default function Home() {
@@ -23,60 +37,55 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative h-[100dvh] flex items-center justify-center overflow-hidden">
-        {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background z-10" />
-          <div className="absolute inset-0 bg-black/40 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/70 to-background z-10" />
+          <div className="absolute inset-0 bg-black/50 z-10" />
           <motion.img 
-            initial={{ scale: 1.1 }}
+            initial={{ scale: 1.05 }}
             animate={{ scale: 1 }}
-            transition={{ duration: 1.5, ease: "easeOut" as const }}
+            transition={{ duration: 2, ease: "easeOut" as const }}
             src={heroImg} 
             alt="D Roger performing" 
             className="w-full h-full object-cover object-top"
           />
         </div>
 
-        <div className="container relative z-20 px-6 md:px-12 text-center flex flex-col items-center mt-20">
-          <motion.div
+        <div className="container relative z-20 px-6 md:px-12 text-center flex flex-col items-center mt-12">
+          <motion.h1 
+            className="text-6xl md:text-8xl lg:text-[10rem] font-display font-bold uppercase tracking-tighter leading-none mb-6 text-transparent bg-clip-text bg-gradient-to-br from-white via-white/90 to-white/50 drop-shadow-sm"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <span className="text-primary font-medium tracking-[0.3em] uppercase text-sm md:text-base mb-4 block">
-              Família Ordem Sul
-            </span>
-          </motion.div>
-          
-          <motion.h1 
-            className="text-6xl md:text-8xl lg:text-9xl font-display font-bold uppercase tracking-tighter leading-none mb-6"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            D<span className="text-primary">ROGER</span>
+            D ROGER
           </motion.h1>
           
           <motion.p 
-            className="text-lg md:text-2xl text-muted-foreground max-w-2xl mx-auto font-light leading-relaxed mb-10"
+            className="text-xl md:text-2xl text-primary font-medium tracking-widest uppercase mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            Artista | Produtor Musical | Agente Cultural
+          </motion.p>
+          
+          <motion.p 
+            className="text-lg md:text-2xl text-muted-foreground/90 max-w-3xl mx-auto font-light leading-relaxed mb-12"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            Artista • Beatmaker • Produtor • Compositor<br/>Ator • Escritor
+            18 anos fortalecendo a cultura hip hop da Zona Sul de Natal.
           </motion.p>
           
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4"
+            className="flex flex-col sm:flex-row gap-6"
           >
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-display uppercase tracking-widest px-8 shadow-[0_0_20px_rgba(200,150,50,0.3)] text-lg h-14 rounded-none">
-              Ouvir Agora
-            </Button>
-            <Button size="lg" variant="outline" className="border-border hover:bg-white/5 font-display uppercase tracking-widest px-8 text-lg h-14 rounded-none bg-transparent">
-              Ver Projetos
+            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-display uppercase tracking-widest px-10 shadow-[0_0_20px_rgba(200,150,50,0.3)] text-base h-14 rounded-none">
+              Conhecer a Trajetória
             </Button>
           </motion.div>
         </div>
@@ -87,64 +96,153 @@ export default function Home() {
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
-          <span className="text-[10px] uppercase tracking-widest text-muted-foreground mb-2">Scroll</span>
-          <div className="w-[1px] h-12 bg-gradient-to-b from-primary to-transparent" />
+          <span className="text-[10px] uppercase tracking-widest text-muted-foreground mb-3">Descubra</span>
+          <div className="w-[1px] h-16 bg-gradient-to-b from-primary/80 to-transparent" />
         </motion.div>
       </section>
 
-      {/* Bio Section */}
+      {/* Bio / Institucional Section */}
       <section id="bio" className="py-24 md:py-32 relative">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
             <motion.div 
-              className="lg:col-span-5 relative"
+              className="relative"
               {...fadeInUp}
             >
               <div className="aspect-[4/5] relative overflow-hidden group">
-                <div className="absolute inset-0 bg-primary/20 mix-blend-overlay z-10 group-hover:opacity-0 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-background via-transparent to-transparent z-10" />
                 <img 
                   src={portraitImg} 
                   alt="D Roger Portrait" 
-                  className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700"
+                  className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-1000"
                 />
               </div>
-              {/* Decorative Frame */}
-              <div className="absolute -inset-4 border border-primary/30 z-0 pointer-events-none hidden md:block translate-x-4 translate-y-4" />
+              <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-primary/10 blur-3xl rounded-full -z-10" />
             </motion.div>
             
             <motion.div 
-              className="lg:col-span-7 lg:pl-10"
+              {...fadeInUp}
+              className="flex flex-col justify-center"
+            >
+              <span className="text-primary font-medium tracking-[0.2em] uppercase text-sm mb-4 block">Institucional</span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-8 uppercase tracking-tight leading-tight">
+                Consolidação de um <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60">Legado</span>
+              </h2>
+              
+              <div className="space-y-6 text-muted-foreground text-lg md:text-xl font-light leading-relaxed">
+                <p>
+                  Com mais de <strong className="text-foreground font-medium">18 anos de atuação contínua</strong>, D ROGER construiu uma trajetória sólida que transcende a performance artística, posicionando-se como um pilar de fomento cultural na Zona Sul de Natal.
+                </p>
+                <p>
+                  Como artista e produtor musical, acumula dezenas de apresentações ao vivo e participações em eventos de relevância, somando <strong className="text-foreground font-medium">mais de 100 mil streams</strong> acumulados em colaborações e produções originais.
+                </p>
+                <p>
+                  Sua visão estratégica culminou na formalização de sua ação cultural através do coletivo <strong className="text-foreground font-medium">Ordem Sul</strong>, estabelecendo um núcleo de impacto que une produção técnica, educação e desenvolvimento socioartístico para a juventude potiguar.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Impacto & Alcance Section */}
+      <section id="impacto" className="py-24 md:py-32 bg-secondary/30 border-y border-border/30 relative">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <div className="container mx-auto px-6 md:px-12">
+          <motion.div className="mb-20 text-center" {...fadeInUp}>
+            <span className="text-primary font-medium tracking-[0.2em] uppercase text-sm mb-4 block">Métricas</span>
+            <h2 className="text-4xl md:text-5xl font-display font-bold uppercase tracking-tight">Impacto & <span className="text-primary">Alcance</span></h2>
+          </motion.div>
+
+          <motion.div 
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-50px" }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          >
+            {[
+              { value: "18+", label: "Anos de Atividade", desc: "Consistência e dedicação à cultura urbana." },
+              { value: "100k+", label: "Streams", desc: "Acessos acumulados em produções e colaborações." },
+              { value: "Dezenas", label: "Performances Ao Vivo", desc: "Presença de palco e conexão com o público." },
+              { value: "1º", label: "Núcleo Formalizado", desc: "Ação cultural institucionalizada via Ordem Sul." }
+            ].map((stat, i) => (
+              <motion.div 
+                key={i} 
+                variants={itemEffect}
+                className="p-8 border border-border/50 bg-background/50 hover:border-primary/50 transition-colors group"
+              >
+                <h4 className="text-5xl font-display font-bold text-foreground mb-2 group-hover:text-primary transition-colors">{stat.value}</h4>
+                <p className="text-sm text-foreground font-medium uppercase tracking-wider mb-3">{stat.label}</p>
+                <div className="w-8 h-px bg-border group-hover:bg-primary/50 mb-3 transition-colors" />
+                <p className="text-sm text-muted-foreground font-light">{stat.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Projeto Cultural Section */}
+      <section id="projeto-cultural" className="py-24 md:py-32 relative">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            <motion.div 
+              className="lg:col-span-6 lg:pr-10"
               {...fadeInUp}
             >
-              <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 uppercase tracking-tight">
-                A Jornada de um <span className="text-primary">Criador</span>
+              <span className="text-primary font-medium tracking-[0.2em] uppercase text-sm mb-4 block flex items-center gap-2">
+                <Users className="w-4 h-4" /> Formação & Fomento
+              </span>
+              <h2 className="text-4xl md:text-5xl font-display font-bold mb-8 uppercase tracking-tight leading-tight">
+                Projeto Cultural <br/><span className="text-primary">Ordem Sul</span>
               </h2>
-              <div className="h-1 w-20 bg-primary mb-8" />
               
-              <div className="space-y-6 text-muted-foreground text-lg font-light leading-relaxed">
+              <div className="space-y-6 text-muted-foreground text-lg font-light leading-relaxed mb-10">
                 <p>
-                  Nascido em Natal-RN, Francisco Iranilson da Silva, conhecido artisticamente como <strong>D Roger</strong>, é um artista múltiplo. Com raízes profundas na cultura hip hop, ele atua como beatmaker, produtor, compositor, intérprete e rapper.
+                  O Projeto Cultural Ordem Sul transcende a produção musical isolada, estabelecendo-se como um polo de capacitação profissional para a juventude periférica.
                 </p>
                 <p>
-                  Além da música, D Roger expande sua arte como ator e escritor. É o fundador e líder do grupo <strong>Família Ordem Sul</strong>, marcando presença forte na cena urbana nordestina.
+                  A iniciativa principal conta com um <strong>workshop de 40 horas</strong> dedicado a <strong>20 participantes</strong>, focando em técnicas de produção, beatmaking e fundamentos do mercado da música independente.
                 </p>
                 <p>
-                  Como educador e produtor técnico, criou o <strong>Beatmaker Pro FL Studio</strong>, um curso e workshop focado em capacitar a nova geração de produtores musicais, compartilhando conhecimento técnico e visão de mercado.
+                  A execução ocorre em formato <strong>híbrido</strong>: em parceria estratégica com um Espaço Cultural local (instituição formalizada e com CNPJ ativo), e etapas complementares realizadas na base de operações (Home Studio).
                 </p>
               </div>
 
-              <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-border/50 pt-8">
-                <div>
-                  <h4 className="text-3xl font-display font-bold text-foreground">15+</h4>
-                  <p className="text-sm text-muted-foreground uppercase tracking-wider mt-1">Anos de Cena</p>
-                </div>
-                <div>
-                  <h4 className="text-3xl font-display font-bold text-foreground">50+</h4>
-                  <p className="text-sm text-muted-foreground uppercase tracking-wider mt-1">Beats Produzidos</p>
-                </div>
-                <div>
-                  <h4 className="text-3xl font-display font-bold text-foreground">1M+</h4>
-                  <p className="text-sm text-muted-foreground uppercase tracking-wider mt-1">Streams</p>
+              <ul className="space-y-4 font-medium text-foreground">
+                <li className="flex items-center gap-4 border border-border/50 p-4 bg-secondary/10">
+                  <div className="w-10 h-10 bg-primary/10 flex items-center justify-center shrink-0">
+                    <Building2 className="w-5 h-5 text-primary" />
+                  </div>
+                  <span>Parceria Institucional Formalizada (CNPJ Ativo)</span>
+                </li>
+                <li className="flex items-center gap-4 border border-border/50 p-4 bg-secondary/10">
+                  <div className="w-10 h-10 bg-primary/10 flex items-center justify-center shrink-0">
+                    <Users className="w-5 h-5 text-primary" />
+                  </div>
+                  <span>Workshop de 40h para 20 alunos</span>
+                </li>
+              </ul>
+            </motion.div>
+
+            <motion.div 
+              className="lg:col-span-6 relative"
+              {...fadeInUp}
+            >
+              <div className="aspect-square relative overflow-hidden">
+                <div className="absolute inset-0 bg-black/40 z-10" />
+                <img 
+                  src={heroImg} 
+                  alt="Projeto Cultural Ordem Sul" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 border border-border/50 z-20 pointer-events-none" />
+                
+                <div className="absolute bottom-8 left-8 z-20">
+                  <div className="bg-background/90 backdrop-blur-md p-6 border border-border/50 inline-block">
+                    <h4 className="font-display font-bold text-2xl uppercase mb-1">Impacto Direto</h4>
+                    <p className="text-primary font-medium tracking-widest uppercase text-sm">Capacitação Técnica</p>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -152,198 +250,140 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-24 md:py-32 bg-card/30 border-y border-border/30">
+      {/* Infraestrutura Section */}
+      <section id="infraestrutura" className="py-24 md:py-32 bg-card border-t border-border/30">
         <div className="container mx-auto px-6 md:px-12">
-          <motion.div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-6" {...fadeInUp}>
-            <div>
-              <span className="text-primary font-medium tracking-[0.2em] uppercase text-sm mb-2 block">Portfólio</span>
-              <h2 className="text-4xl md:text-5xl font-display font-bold uppercase tracking-tight">Projetos <span className="text-primary">Principais</span></h2>
-            </div>
-            <Button variant="link" className="text-muted-foreground hover:text-primary p-0 flex items-center gap-2 uppercase tracking-widest text-sm font-display">
-              Ver Todos <ArrowRight className="w-4 h-4" />
-            </Button>
+          <motion.div className="mb-16 md:mb-24 text-center max-w-3xl mx-auto" {...fadeInUp}>
+            <span className="text-primary font-medium tracking-[0.2em] uppercase text-sm mb-4 block flex items-center justify-center gap-2">
+              <Headphones className="w-4 h-4" /> Base Operacional
+            </span>
+            <h2 className="text-4xl md:text-5xl font-display font-bold uppercase tracking-tight mb-6">Infraestrutura & <span className="text-primary">Produção</span></h2>
+            <p className="text-muted-foreground text-lg font-light leading-relaxed">
+              D ROGER atua como responsável direto pelo núcleo de produção musical, gerenciando os recursos técnicos e a direção artística dos projetos associados à Ordem Sul.
+            </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Project 1 */}
-            <motion.div className="group relative overflow-hidden rounded-none bg-card border border-border/50" {...fadeInUp}>
+            <motion.div 
+              className="group relative overflow-hidden rounded-none bg-background border border-border/50" 
+              {...fadeInUp}
+            >
               <div className="aspect-[16/9] overflow-hidden relative">
-                <div className="absolute inset-0 bg-black/50 group-hover:bg-black/20 transition-colors duration-500 z-10" />
-                <img src={heroImg} alt="Família Ordem Sul" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute top-4 left-4 z-20">
-                  <span className="bg-primary text-primary-foreground text-xs font-bold uppercase tracking-widest px-3 py-1">Grupo Musical</span>
+                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors duration-700 z-10" />
+                <img src={studioImg} alt="Home Studio" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
+                <div className="absolute bottom-6 left-6 z-20">
+                  <h3 className="text-2xl font-display font-bold mb-2 uppercase">Home Studio</h3>
+                  <span className="bg-primary/20 text-primary border border-primary/30 text-xs font-bold uppercase tracking-widest px-3 py-1 backdrop-blur-sm">Núcleo Central</span>
                 </div>
               </div>
-              <div className="p-8 relative z-20 -mt-10 mx-6 bg-background border border-border/50 shadow-xl group-hover:border-primary/50 transition-colors duration-300">
-                <h3 className="text-2xl font-display font-bold mb-3 uppercase">Família Ordem Sul</h3>
-                <p className="text-muted-foreground font-light mb-6">Fundador e líder do grupo que representa a voz e a força da cultura hip hop em Natal-RN.</p>
-                <a href="#" className="inline-flex items-center text-primary font-medium uppercase tracking-wider text-sm hover:underline">
-                  Conhecer o Grupo <ArrowRight className="ml-2 w-4 h-4" />
-                </a>
+              <div className="p-8">
+                <p className="text-muted-foreground font-light leading-relaxed">
+                  Base de operações central para captação, beatmaking e pós-produção. Ambiente otimizado para o desenvolvimento do catálogo musical próprio e produções de artistas parceiros.
+                </p>
               </div>
             </motion.div>
 
-            {/* Project 2 */}
-            <motion.div className="group relative overflow-hidden rounded-none bg-card border border-border/50" {...fadeInUp} transition={{ delay: 0.2 }}>
+            <motion.div 
+              className="group relative overflow-hidden rounded-none bg-background border border-border/50" 
+              {...fadeInUp} 
+              transition={{ delay: 0.2 }}
+            >
               <div className="aspect-[16/9] overflow-hidden relative">
-                <div className="absolute inset-0 bg-black/50 group-hover:bg-black/20 transition-colors duration-500 z-10" />
-                <img src={studioImg} alt="Beatmaker Pro" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute top-4 left-4 z-20">
-                  <span className="bg-primary text-primary-foreground text-xs font-bold uppercase tracking-widest px-3 py-1">Curso & Workshop</span>
+                <div className="absolute inset-0 bg-primary/20 mix-blend-multiply z-10" />
+                <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors duration-700 z-10" />
+                <img src={heroImg} alt="Espaço Cultural" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
+                <div className="absolute bottom-6 left-6 z-20">
+                  <h3 className="text-2xl font-display font-bold mb-2 uppercase">Espaço Cultural Parceiro</h3>
+                  <span className="bg-primary/20 text-primary border border-primary/30 text-xs font-bold uppercase tracking-widest px-3 py-1 backdrop-blur-sm">Extensão Híbrida</span>
                 </div>
               </div>
-              <div className="p-8 relative z-20 -mt-10 mx-6 bg-background border border-border/50 shadow-xl group-hover:border-primary/50 transition-colors duration-300">
-                <h3 className="text-2xl font-display font-bold mb-3 uppercase">Beatmaker Pro FL Studio</h3>
-                <p className="text-muted-foreground font-light mb-6">Curso completo e workshop prático de produção musical focado na principal DAW do mercado urbano.</p>
-                <a href="#" className="inline-flex items-center text-primary font-medium uppercase tracking-wider text-sm hover:underline">
-                  Inscreva-se <ArrowRight className="ml-2 w-4 h-4" />
-                </a>
+              <div className="p-8">
+                <p className="text-muted-foreground font-light leading-relaxed">
+                  Infraestrutura de apoio onde são realizados os encontros presenciais, dinâmicas de grupo e parte das atividades formativas do workshop do Projeto Cultural Ordem Sul.
+                </p>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Music / Beats Section */}
-      <section id="music" className="py-24 md:py-32 relative overflow-hidden">
-        <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
-        
-        <div className="container mx-auto px-6 md:px-12 relative z-10">
-          <motion.div className="mb-16 text-center" {...fadeInUp}>
-            <span className="text-primary font-medium tracking-[0.2em] uppercase text-sm mb-2 block">Catálogo</span>
-            <h2 className="text-4xl md:text-5xl font-display font-bold uppercase tracking-tight">Beats & <span className="text-primary">Tracks</span></h2>
-          </motion.div>
-
-          <div className="max-w-4xl mx-auto space-y-4">
-            {/* Audio Track Mockup 1 */}
-            <motion.div className="flex items-center gap-4 p-4 border border-border/50 bg-card hover:bg-card/80 transition-colors group" {...fadeInUp}>
-              <button className="w-12 h-12 flex items-center justify-center bg-primary text-primary-foreground rounded-none shrink-0 group-hover:scale-105 transition-transform">
-                <Play className="w-5 h-5 ml-1" />
-              </button>
-              <div className="flex-1 min-w-0">
-                <h4 className="text-lg font-display font-semibold truncate">Sombra do Asfalto</h4>
-                <p className="text-sm text-muted-foreground truncate">D Roger • Família Ordem Sul</p>
-              </div>
-              <div className="hidden md:block w-32 h-6 opacity-50">
-                {/* Mock waveform */}
-                <div className="w-full h-full flex items-end gap-[2px]">
-                  {[...Array(20)].map((_, i) => (
-                    <div key={i} className="w-1 bg-primary" style={{ height: `${Math.random() * 100}%` }} />
-                  ))}
-                </div>
-              </div>
-              <span className="text-sm font-mono text-muted-foreground">3:42</span>
-            </motion.div>
-
-            {/* Audio Track Mockup 2 */}
-            <motion.div className="flex items-center gap-4 p-4 border border-border/50 bg-card hover:bg-card/80 transition-colors group" {...fadeInUp} transition={{ delay: 0.1 }}>
-              <button className="w-12 h-12 flex items-center justify-center bg-primary/20 text-primary border border-primary/50 rounded-none shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                <Play className="w-5 h-5 ml-1" />
-              </button>
-              <div className="flex-1 min-w-0">
-                <h4 className="text-lg font-display font-semibold truncate">Trap Beat - "Noturno"</h4>
-                <p className="text-sm text-muted-foreground truncate">Beatmaker Pro • Instrumental</p>
-              </div>
-              <div className="hidden md:block w-32 h-6 opacity-30">
-                {/* Mock waveform */}
-                <div className="w-full h-full flex items-end gap-[2px]">
-                  {[...Array(20)].map((_, i) => (
-                    <div key={i} className="w-1 bg-foreground" style={{ height: `${Math.random() * 100}%` }} />
-                  ))}
-                </div>
-              </div>
-              <span className="text-sm font-mono text-muted-foreground">2:15</span>
-            </motion.div>
-
-            {/* Audio Track Mockup 3 */}
-            <motion.div className="flex items-center gap-4 p-4 border border-border/50 bg-card hover:bg-card/80 transition-colors group" {...fadeInUp} transition={{ delay: 0.2 }}>
-              <button className="w-12 h-12 flex items-center justify-center bg-primary/20 text-primary border border-primary/50 rounded-none shrink-0 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                <Play className="w-5 h-5 ml-1" />
-              </button>
-              <div className="flex-1 min-w-0">
-                <h4 className="text-lg font-display font-semibold truncate">Boom Bap Clássico</h4>
-                <p className="text-sm text-muted-foreground truncate">Instrumental Disponível</p>
-              </div>
-              <div className="hidden md:block w-32 h-6 opacity-30">
-                {/* Mock waveform */}
-                <div className="w-full h-full flex items-end gap-[2px]">
-                  {[...Array(20)].map((_, i) => (
-                    <div key={i} className="w-1 bg-foreground" style={{ height: `${Math.random() * 100}%` }} />
-                  ))}
-                </div>
-              </div>
-              <span className="text-sm font-mono text-muted-foreground">3:05</span>
-            </motion.div>
-          </div>
-
-          <div className="mt-12 text-center">
-            <Button variant="outline" className="border-border rounded-none font-display uppercase tracking-widest px-8">
-              Ver Catálogo Completo
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section id="services" className="py-24 md:py-32 bg-card border-t border-border/30">
+      {/* Future Release Placeholder (Hidden Structural Space) */}
+      <section id="releases" className="hidden py-24 md:py-32 relative">
         <div className="container mx-auto px-6 md:px-12">
-          <motion.div className="mb-16 text-center" {...fadeInUp}>
-            <h2 className="text-4xl md:text-5xl font-display font-bold uppercase tracking-tight">O Que <span className="text-primary">Faço</span></h2>
-            <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">Multidisciplinaridade aplicada à arte urbana e produção musical.</p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { title: "Produção Musical & Beats", desc: "Criação de instrumentais originais, captação, mixagem e masterização focada em música urbana." },
-              { title: "Composição & Interpretação", desc: "Letras originais, ghostwriting e performances ao vivo com presença de palco marcante." },
-              { title: "Workshops & Aulas", desc: "Instrução técnica em FL Studio, desde conceitos básicos até técnicas avançadas de produção." },
-              { title: "Atuação", desc: "Participação em clipes, produções audiovisuais e projetos teatrais urbanos." },
-              { title: "Escrita", desc: "Desenvolvimento de roteiros, poesias e narrativas que documentam a realidade das ruas." },
-              { title: "Shows & Eventos", desc: "Apresentações com a Família Ordem Sul ou em formato solo." }
-            ].map((service, i) => (
-              <motion.div 
-                key={i} 
-                className="p-8 border border-border/50 hover:border-primary/50 transition-colors bg-background/50 relative group"
-                {...fadeInUp}
-                transition={{ delay: i * 0.1 }}
-              >
-                <div className="w-10 h-10 border border-primary/30 flex items-center justify-center text-primary font-display font-bold text-xl mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                  {i + 1}
-                </div>
-                <h3 className="text-xl font-display font-bold mb-3 uppercase">{service.title}</h3>
-                <p className="text-muted-foreground text-sm font-light leading-relaxed">{service.desc}</p>
-              </motion.div>
-            ))}
-          </div>
+          {/* Content for future single/EP releases will go here */}
         </div>
       </section>
 
       {/* Footer / Contact */}
-      <footer id="contact" className="py-20 border-t border-border/30 relative overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-20" />
+      <footer id="contato" className="py-24 border-t border-border/30 relative overflow-hidden bg-background">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
         
-        <div className="container mx-auto px-6 md:px-12 text-center">
-          <motion.h2 className="text-5xl md:text-8xl font-display font-bold uppercase tracking-tighter opacity-10 mb-8" {...fadeInUp}>
-            D ROGER
-          </motion.h2>
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-16">
+            <motion.div {...fadeInUp}>
+              <h2 className="text-4xl font-display font-bold uppercase tracking-tight mb-8">Contato <span className="text-primary">Profissional</span></h2>
+              <p className="text-muted-foreground font-light mb-10 max-w-md">
+                Para propostas de shows, workshops, produções musicais ou parcerias institucionais.
+              </p>
+              
+              <div className="space-y-6">
+                <a href="mailto:contato.droger@exemplo.com" className="flex items-center group">
+                  <div className="w-12 h-12 rounded-full border border-border/50 bg-secondary/20 flex items-center justify-center mr-4 group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all">
+                    <Mail className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Email Profissional</p>
+                    <p className="text-foreground font-medium group-hover:text-primary transition-colors">contato@droger.com.br</p>
+                  </div>
+                </a>
+                
+                <a href="https://wa.me/5584000000000" className="flex items-center group">
+                  <div className="w-12 h-12 rounded-full border border-border/50 bg-secondary/20 flex items-center justify-center mr-4 group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all">
+                    <Phone className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">WhatsApp / Comercial</p>
+                    <p className="text-foreground font-medium group-hover:text-primary transition-colors">+55 (84) 99999-9999</p>
+                  </div>
+                </a>
+
+                <div className="flex items-center group">
+                  <div className="w-12 h-12 rounded-full border border-border/50 bg-secondary/20 flex items-center justify-center mr-4">
+                    <MapPin className="w-5 h-5 text-muted-foreground" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Localização</p>
+                    <p className="text-foreground font-medium">Zona Sul, Natal - RN</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div {...fadeInUp} transition={{ delay: 0.2 }} className="flex flex-col justify-end">
+              <h3 className="text-2xl font-display font-bold uppercase mb-6">Redes Sociais</h3>
+              <div className="flex space-x-4 mb-12">
+                <a href="#" className="w-14 h-14 rounded-full border border-border bg-card flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all shadow-sm hover:shadow-[0_0_15px_rgba(200,150,50,0.4)]">
+                  <Instagram className="w-6 h-6" />
+                </a>
+                <a href="#" className="w-14 h-14 rounded-full border border-border bg-card flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all shadow-sm hover:shadow-[0_0_15px_rgba(200,150,50,0.4)]">
+                  <Youtube className="w-6 h-6" />
+                </a>
+                <a href="#" className="w-14 h-14 rounded-full border border-border bg-card flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all shadow-sm hover:shadow-[0_0_15px_rgba(200,150,50,0.4)]">
+                  <Radio className="w-6 h-6" />
+                </a>
+              </div>
+              
+              <div className="bg-secondary/30 border border-border/50 p-6 rounded-none mt-auto">
+                <h4 className="font-display font-bold uppercase tracking-widest text-sm mb-2 text-primary">Ordem Sul</h4>
+                <p className="text-sm text-muted-foreground font-light">Agência Cultural & Produtora Independente.</p>
+              </div>
+            </motion.div>
+          </div>
           
-          <motion.div className="flex justify-center space-x-6 mb-12" {...fadeInUp}>
-            <a href="#" className="w-12 h-12 rounded-full border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all">
-              <Instagram className="w-5 h-5" />
-            </a>
-            <a href="#" className="w-12 h-12 rounded-full border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all">
-              <Youtube className="w-5 h-5" />
-            </a>
-            <a href="#" className="w-12 h-12 rounded-full border border-border flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all">
-              <Mail className="w-5 h-5" />
-            </a>
-          </motion.div>
-          
-          <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-border/30 text-sm text-muted-foreground uppercase tracking-widest font-mono">
-            <p>© {new Date().getFullYear()} D Roger. Todos os direitos reservados.</p>
-            <p className="mt-4 md:mt-0 flex items-center">
-              Natal, RN - Brasil
+          <div className="flex flex-col md:flex-row items-center justify-between pt-10 border-t border-border/30 text-xs text-muted-foreground uppercase tracking-widest font-mono">
+            <p>© {new Date().getFullYear()} D ROGER. Todos os direitos reservados.</p>
+            <p className="mt-4 md:mt-0">
+              Produção Executiva: Ordem Sul
             </p>
           </div>
         </div>
