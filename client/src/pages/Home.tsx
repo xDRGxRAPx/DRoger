@@ -327,23 +327,43 @@ export default function Home() {
               </p>
               
               <div className="space-y-6">
-                <a href="mailto:contato.droger@exemplo.com" className="flex items-center group">
+                <a href="mailto:bboyrhoger@gmail.com" className="flex items-center group">
                   <div className="w-12 h-12 rounded-full border border-border/50 bg-secondary/20 flex items-center justify-center mr-4 group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Email Profissional</p>
-                    <p className="text-foreground font-medium group-hover:text-primary transition-colors">contato@droger.com.br</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Email Principal</p>
+                    <p className="text-foreground font-medium group-hover:text-primary transition-colors">bboyrhoger@gmail.com</p>
+                  </div>
+                </a>
+
+                <a href="mailto:realtraprn@gmail.com" className="flex items-center group">
+                  <div className="w-12 h-12 rounded-full border border-border/50 bg-secondary/20 flex items-center justify-center mr-4 group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all">
+                    <Mail className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Email Alternativo</p>
+                    <p className="text-foreground font-medium group-hover:text-primary transition-colors">realtraprn@gmail.com</p>
                   </div>
                 </a>
                 
-                <a href="https://wa.me/5584000000000" className="flex items-center group">
+                <a href="https://wa.me/5584996193537" className="flex items-center group">
                   <div className="w-12 h-12 rounded-full border border-border/50 bg-secondary/20 flex items-center justify-center mr-4 group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">WhatsApp / Comercial</p>
-                    <p className="text-foreground font-medium group-hover:text-primary transition-colors">+55 (84) 99999-9999</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">WhatsApp / Profissional</p>
+                    <p className="text-foreground font-medium group-hover:text-primary transition-colors">(84) 99619-3537</p>
+                  </div>
+                </a>
+
+                <a href="tel:+5584999359559" className="flex items-center group">
+                  <div className="w-12 h-12 rounded-full border border-border/50 bg-secondary/20 flex items-center justify-center mr-4 group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all">
+                    <Phone className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Contato Pessoal</p>
+                    <p className="text-foreground font-medium group-hover:text-primary transition-colors">(84) 99935-9559</p>
                   </div>
                 </a>
 
@@ -362,7 +382,7 @@ export default function Home() {
             <motion.div {...fadeInUp} transition={{ delay: 0.2 }} className="flex flex-col justify-end">
               <h3 className="text-2xl font-display font-bold uppercase mb-6">Redes Sociais</h3>
               <div className="flex space-x-4 mb-12">
-                <a href="#" className="w-14 h-14 rounded-full border border-border bg-card flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all shadow-sm hover:shadow-[0_0_15px_rgba(200,150,50,0.4)]">
+                <a href="https://instagram.com/droger_oficial" target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-full border border-border bg-card flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all shadow-sm hover:shadow-[0_0_15px_rgba(200,150,50,0.4)]">
                   <Instagram className="w-6 h-6" />
                 </a>
                 <a href="#" className="w-14 h-14 rounded-full border border-border bg-card flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all shadow-sm hover:shadow-[0_0_15px_rgba(200,150,50,0.4)]">

@@ -14,10 +14,12 @@ import bgImg from "@/assets/images/hero-bg.png";
 
 export default function LinkInBio() {
   const links = [
-    { title: "Orçamento para Projetos/Produções", icon: Briefcase, url: "#", primary: true },
-    { title: "Contato Institucional / Shows", icon: Mail, url: "#", primary: false },
-    { title: "WhatsApp Profissional", icon: Phone, url: "https://wa.me/5584000000000", primary: false },
-    { title: "Instagram Oficial", icon: Instagram, url: "#", primary: false },
+    { title: "Orçamento para Projetos/Produções", icon: Briefcase, url: "https://wa.me/5584996193537", primary: true },
+    { title: "WhatsApp Profissional", icon: Phone, url: "https://wa.me/5584996193537", primary: false },
+    { title: "Contato Pessoal", icon: Phone, url: "tel:+5584999359559", primary: false },
+    { title: "Email Institucional", icon: Mail, url: "mailto:bboyrhoger@gmail.com", primary: false },
+    { title: "Email Alternativo", icon: Mail, url: "mailto:realtraprn@gmail.com", primary: false },
+    { title: "Instagram Oficial", icon: Instagram, url: "https://instagram.com/droger_oficial", primary: false },
     { title: "Canal do YouTube", icon: Youtube, url: "#", primary: false },
   ];
 
