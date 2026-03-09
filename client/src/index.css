@@ -251,22 +251,7 @@ body::after {
   pointer-events: none;
   position: fixed;
   inset: 0;
-  opacity: 0.06;
+  opacity: 0.015;
   background-image: url("https://grainy-gradients.vercel.app/noise.svg");
   z-index: 9998;
-}
-
-/* ADDITIONAL FILM GRAIN EFFECT */
-body {
-  position: relative;
-}
-
-body::before {
-  content: "";
-  pointer-events: none;
-  position: fixed;
-  inset: 0;
-  opacity: 0.04;
-  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-  z-index: 9997;
 }

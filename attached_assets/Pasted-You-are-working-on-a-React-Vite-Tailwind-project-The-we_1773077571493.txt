@@ -1,0 +1,249 @@
+You are working on a React + Vite + Tailwind project.
+
+The website already exists with many sections and animations.
+
+DO NOT rewrite the existing pages.
+
+Only ADD cinematic features and fix brightness issues.
+
+---
+
+PART 1 — FIX DARK OVERLAY ISSUE
+
+The site currently appears too dark due to strong overlays.
+
+Open:
+
+client/src/index.css
+
+Find the film grain code.
+
+Replace it with:
+
+body::after {
+content: "";
+pointer-events: none;
+position: fixed;
+inset: 0;
+opacity: 0.015;
+background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+}
+
+Now reduce brightness filters across the site.
+
+Search the project for:
+
+brightness-75
+brightness-50
+opacity-40 overlays
+
+Reduce them to:
+
+brightness-95
+opacity-10
+
+Also check hero overlays like:
+
+bg-black/50
+bg-black/60
+
+Replace with:
+
+bg-black/20
+
+---
+
+PART 2 — CINEMATIC SECTION TRANSITIONS
+
+Create:
+
+client/src/components/CinematicSection.tsx
+
+Code:
+
+import { motion } from "framer-motion";
+
+export default function CinematicSection({ children }: any) {
+
+return (
+
+```
+<motion.section
+  initial={{ opacity: 0, y: 80 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{
+    duration: 1.2,
+    ease: [0.22, 1, 0.36, 1]
+  }}
+>
+
+  {children}
+
+</motion.section>
+```
+
+);
+
+}
+
+Usage example inside sections:
+
+<CinematicSection>
+   existing content
+</CinematicSection>
+
+This creates movie-style scene transitions.
+
+---
+
+PART 3 — FULLSCREEN CINEMATIC MENU
+
+Create:
+
+client/src/components/CinematicMenu.tsx
+
+Code:
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+export default function CinematicMenu() {
+
+const [open, setOpen] = useState(false);
+
+return (
+
+```
+<>
+
+  <button
+    onClick={() => setOpen(!open)}
+    className="fixed top-6 right-6 z-[10000] text-white text-xl"
+  >
+    MENU
+  </button>
+
+  <AnimatePresence>
+
+    {open && (
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 bg-black z-[9999] flex flex-col items-center justify-center gap-10 text-white text-4xl"
+      >
+
+        <motion.a whileHover={{ scale: 1.1 }} href="#">Home</motion.a>
+        <motion.a whileHover={{ scale: 1.1 }} href="#about">About</motion.a>
+        <motion.a whileHover={{ scale: 1.1 }} href="#projects">Projects</motion.a>
+        <motion.a whileHover={{ scale: 1.1 }} href="#contact">Contact</motion.a>
+
+      </motion.div>
+
+    )}
+
+  </AnimatePresence>
+
+</>
+```
+
+);
+
+}
+
+---
+
+PART 4 — APPLE VISION STYLE SCROLL STORYTELLING
+
+Create:
+
+client/src/components/StorySection.tsx
+
+Code:
+
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+
+export default function StorySection({ title, text, image }: any) {
+
+const ref = useRef(null);
+
+const { scrollYProgress } = useScroll({
+target: ref,
+offset: ["start end", "end start"]
+});
+
+const scale = useTransform(scrollYProgress, [0, 1], [0.9, 1]);
+const opacity = useTransform(scrollYProgress, [0, 0.6], [0, 1]);
+
+return (
+
+```
+<section
+  ref={ref}
+  className="min-h-screen flex items-center justify-center px-6"
+>
+
+  <motion.div
+    style={{ scale, opacity }}
+    className="max-w-6xl grid md:grid-cols-2 gap-12 items-center"
+  >
+
+    <img
+      src={image}
+      className="rounded-xl shadow-2xl"
+    />
+
+    <div>
+
+      <h2 className="text-5xl font-bold mb-6">
+        {title}
+      </h2>
+
+      <p className="text-lg opacity-80">
+        {text}
+      </p>
+
+    </div>
+
+  </motion.div>
+
+</section>
+```
+
+);
+
+}
+
+---
+
+PART 5 — ADD MENU TO APP
+
+Open:
+
+client/src/App.tsx
+
+Import:
+
+import CinematicMenu from "./components/CinematicMenu";
+
+Add inside the main layout:
+
+<CinematicMenu />
+
+---
+
+FINAL RESULT
+
+After implementation the website must include:
+
+• Correct brightness levels
+• Film-style section transitions
+• Cinematic fullscreen menu
+• Apple Vision Pro style scroll storytelling
+
+Do NOT remove existing animations.
+
+Everything must remain smooth and responsive.

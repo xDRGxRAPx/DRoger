@@ -385,7 +385,7 @@ export default function Home() {
                   <img
                     src={studioImg}
                     alt=""
-                    className="w-full h-full object-cover filter blur-2xl scale-125 opacity-30 brightness-75"
+                    className="w-full h-full object-cover filter blur-2xl scale-125 opacity-30 brightness-95"
                   />
                 </div>
 

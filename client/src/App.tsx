@@ -8,6 +8,7 @@ import Cursor from "./components/Cursor";
 import MouseLight from "./components/MouseLight";
 import Loader from "./components/Loader";
 import CinematicCursor from "./components/CinematicCursor";
+import CinematicMenu from "./components/CinematicMenu";
 
 import Home from "@/pages/Home";
 import LinkInBio from "@/pages/LinkInBio";
@@ -34,6 +35,7 @@ function App() {
           <Cursor />
           <MouseLight />
           <Loader />
+          <CinematicMenu />
           <Toaster />
           <Router />
         </TooltipProvider>
