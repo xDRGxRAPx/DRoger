@@ -1,0 +1,440 @@
+You are working on a React + Vite + Tailwind portfolio website.
+
+Your goal is to upgrade the site to an international cinematic artistic portfolio similar to Apple, Nike, and Awwwards-winning websites.
+
+IMPORTANT RULES
+
+Do NOT delete existing sections.
+Do NOT rewrite the current layout.
+Do NOT reduce code structure.
+Only ADD visual layers, components and animations.
+
+Everything must compile successfully.
+
+---
+
+INSTALL REQUIRED LIBRARIES
+
+Run:
+
+npm install framer-motion @react-three/fiber @react-three/drei three
+
+---
+
+FEATURE 1 — CINEMATIC HERO VIDEO
+
+Create:
+
+client/src/components/CinematicHero.tsx
+
+Code:
+
+import { motion } from "framer-motion";
+
+export default function CinematicHero() {
+
+return (
+
+```
+<section className="relative h-screen flex items-center justify-center overflow-hidden">
+
+  <video
+    className="absolute w-full h-full object-cover"
+    autoPlay
+    muted
+    loop
+    playsInline
+  >
+    <source src="/hero-video.mp4" type="video/mp4" />
+  </video>
+
+  <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+
+  <motion.div
+    className="relative z-10 text-center text-white"
+    initial={{ opacity: 0, y: 80 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 1.2 }}
+  >
+
+    <h1 className="text-6xl md:text-7xl font-bold tracking-tight">
+      D ROGER
+    </h1>
+
+    <p className="mt-6 text-xl opacity-80">
+      Artistic Journey
+    </p>
+
+  </motion.div>
+
+</section>
+```
+
+);
+
+}
+
+---
+
+FEATURE 2 — MUSEUM STYLE GALLERY
+
+Create:
+
+client/src/components/MuseumGallery.tsx
+
+Code:
+
+import { motion } from "framer-motion";
+
+const artworks = [
+"/gallery/1.jpg",
+"/gallery/2.jpg",
+"/gallery/3.jpg",
+"/gallery/4.jpg"
+];
+
+export default function MuseumGallery() {
+
+return (
+
+```
+<section className="py-32 max-w-7xl mx-auto px-6">
+
+  <h2 className="text-4xl font-bold text-center mb-20">
+    Gallery
+  </h2>
+
+  <div className="grid md:grid-cols-2 gap-16">
+
+    {artworks.map((img, i) => (
+
+      <motion.div
+        key={i}
+        whileHover={{ scale: 1.05 }}
+        transition={{ duration: 0.5 }}
+        className="group"
+      >
+
+        <div className="overflow-hidden rounded-2xl shadow-2xl">
+
+          <img
+            src={img}
+            className="w-full h-[520px] object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+
+        </div>
+
+        <p className="mt-6 text-center opacity-70">
+          Artwork {i + 1}
+        </p>
+
+      </motion.div>
+
+    ))}
+
+  </div>
+
+</section>
+```
+
+);
+
+}
+
+---
+
+FEATURE 3 — 3D PARTICLE BACKGROUND
+
+Create:
+
+client/src/components/ParticlesBackground.tsx
+
+Code:
+
+import { Canvas } from "@react-three/fiber";
+import { Points, PointMaterial } from "@react-three/drei";
+import { useRef } from "react";
+
+function Particles() {
+
+const ref = useRef();
+
+const positions = new Float32Array(3000);
+
+for (let i = 0; i < 3000; i++) {
+positions[i] = (Math.random() - 0.5) * 10;
+}
+
+return ( <Points ref={ref} positions={positions} stride={3}> <PointMaterial
+     transparent
+     color="#ffffff"
+     size={0.02}
+     sizeAttenuation
+     depthWrite={false}
+   /> </Points>
+);
+}
+
+export default function ParticlesBackground() {
+
+return ( <div className="fixed inset-0 -z-10">
+
+```
+  <Canvas camera={{ position: [0, 0, 5] }}>
+    <Particles />
+  </Canvas>
+
+</div>
+```
+
+);
+
+}
+
+---
+
+FEATURE 4 — SCROLL BUILD ANIMATION
+
+Create:
+
+client/src/components/ScrollBuild.tsx
+
+Code:
+
+import { motion } from "framer-motion";
+
+export default function ScrollBuild({ children }: any) {
+
+return (
+
+```
+<motion.div
+  initial={{ opacity: 0, y: 80, scale: 0.95 }}
+  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+  transition={{ duration: 1 }}
+  viewport={{ once: true }}
+>
+
+  {children}
+
+</motion.div>
+```
+
+);
+
+}
+
+---
+
+FEATURE 5 — INTERACTIVE TYPOGRAPHY
+
+Create:
+
+client/src/components/InteractiveTitle.tsx
+
+Code:
+
+import { motion } from "framer-motion";
+
+export default function InteractiveTitle({ children }: any) {
+
+return (
+
+```
+<motion.h1
+  className="text-6xl md:text-7xl font-bold tracking-tight"
+  whileHover={{
+    scale: 1.05,
+    letterSpacing: "0.08em"
+  }}
+  transition={{ duration: 0.4 }}
+>
+
+  {children}
+
+</motion.h1>
+```
+
+);
+
+}
+
+---
+
+FEATURE 6 — MOUSE LIGHT EFFECT
+
+Create:
+
+client/src/components/MouseLight.tsx
+
+Code:
+
+import { useEffect, useState } from "react";
+
+export default function MouseLight() {
+
+const [pos, setPos] = useState({ x: 0, y: 0 });
+
+useEffect(() => {
+
+```
+const move = (e: MouseEvent) => {
+  setPos({ x: e.clientX, y: e.clientY });
+};
+
+window.addEventListener("mousemove", move);
+
+return () => window.removeEventListener("mousemove", move);
+```
+
+}, []);
+
+return (
+
+```
+<div
+  className="pointer-events-none fixed inset-0 z-50"
+  style={{
+    background: `radial-gradient(circle at ${pos.x}px ${pos.y}px, rgba(255,255,255,0.12), transparent 300px)`
+  }}
+/>
+```
+
+);
+
+}
+
+---
+
+FEATURE 7 — FILM GRAIN CINEMA EFFECT
+
+Add to global CSS:
+
+client/src/index.css
+
+Add:
+
+body::after {
+content: "";
+pointer-events: none;
+position: fixed;
+inset: 0;
+opacity: 0.06;
+background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+}
+
+---
+
+FEATURE 8 — PARALLAX IMAGE EFFECT
+
+Create:
+
+client/src/components/ParallaxImage.tsx
+
+Code:
+
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+
+export default function ParallaxImage({ src }: any) {
+
+const ref = useRef(null);
+
+const { scrollYProgress } = useScroll({
+target: ref,
+offset: ["start end", "end start"]
+});
+
+const y = useTransform(scrollYProgress, [0, 1], ["-80px", "80px"]);
+
+return (
+
+```
+<div ref={ref} className="overflow-hidden">
+
+  <motion.img
+    src={src}
+    style={{ y }}
+    className="w-full h-[500px] object-cover"
+  />
+
+</div>
+```
+
+);
+
+}
+
+---
+
+FEATURE 9 — ADD COMPONENTS TO APP
+
+Open:
+
+client/src/App.tsx
+
+Import:
+
+ParticlesBackground
+MouseLight
+
+Add inside main layout:
+
+<ParticlesBackground />
+<MouseLight />
+
+---
+
+FEATURE 10 — ADD TO HOME PAGE
+
+Open:
+
+client/src/pages/Home.tsx
+
+Import:
+
+CinematicHero
+MuseumGallery
+ScrollBuild
+InteractiveTitle
+
+Add at top:
+
+<CinematicHero />
+
+Wrap sections:
+
+<ScrollBuild>
+<section>
+ existing content
+</section>
+</ScrollBuild>
+
+Replace main title with:
+
+<InteractiveTitle>
+D ROGER
+</InteractiveTitle>
+
+Add gallery section:
+
+<MuseumGallery />
+
+---
+
+FINAL RESULT
+
+The portfolio must now include:
+
+Cinematic hero video
+3D particle background
+Museum-style gallery
+Scroll build animations
+Interactive typography
+Mouse light interaction
+Film grain cinema texture
+Parallax images
+
+The experience should feel like a premium digital art exhibition.
+
+Ensure everything compiles and runs smoothly.

@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import MobileNav from "@/components/layout/MobileNav";
 import RevealText from "@/components/RevealText";
 import ArtGallery from "@/components/ArtGallery";
+import MuseumGallery from "@/components/MuseumGallery";
 import {
   Instagram,
   Youtube,
@@ -828,6 +829,9 @@ export default function Home() {
           <ArtGallery />
         </div>
       </section>
+
+      {/* ━━━ MUSEUM GALLERY ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <MuseumGallery />
 
       {/* ━━━ FOOTER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <footer id="contato" className="py-24 sm:py-28 border-t border-border/20 relative bg-background">
