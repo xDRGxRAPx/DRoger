@@ -240,18 +240,7 @@ html {
   position: fixed;
   inset: 0;
   background: url("https://grainy-gradients.vercel.app/noise.svg");
-  opacity: 0.15;
+  opacity: 0.03;
   pointer-events: none;
   z-index: 50;
-}
-
-/* CINEMA FILM GRAIN BODY */
-body::after {
-  content: "";
-  pointer-events: none;
-  position: fixed;
-  inset: 0;
-  opacity: 0.015;
-  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-  z-index: 9998;
 }

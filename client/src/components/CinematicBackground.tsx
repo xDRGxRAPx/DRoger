@@ -1,37 +1,17 @@
-import { motion } from "framer-motion";
-
 export default function CinematicBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      <motion.div
-        className="absolute w-[1200px] h-[1200px] rounded-full blur-[180px]"
+      <div
+        className="absolute top-1/4 left-1/4 w-[1200px] h-[1200px] rounded-full blur-[180px] pointer-events-none"
         style={{
-          background: "radial-gradient(circle, rgba(255,215,0,0.15), transparent)"
-        }}
-        animate={{
-          x: [0, 200, -200, 0],
-          y: [0, -150, 150, 0]
-        }}
-        transition={{
-          duration: 25,
-          repeat: Infinity,
-          ease: "linear"
+          background: "radial-gradient(circle, rgba(255,215,0,0.12), transparent)"
         }}
       />
 
-      <motion.div
-        className="absolute w-[900px] h-[900px] rounded-full blur-[200px]"
+      <div
+        className="absolute bottom-1/4 right-1/4 w-[900px] h-[900px] rounded-full blur-[200px] pointer-events-none"
         style={{
-          background: "radial-gradient(circle, rgba(255,255,255,0.1), transparent)"
-        }}
-        animate={{
-          x: [-200, 200, -200],
-          y: [100, -100, 100]
-        }}
-        transition={{
-          duration: 30,
-          repeat: Infinity,
-          ease: "linear"
+          background: "radial-gradient(circle, rgba(255,255,255,0.08), transparent)"
         }}
       />
     </div>
