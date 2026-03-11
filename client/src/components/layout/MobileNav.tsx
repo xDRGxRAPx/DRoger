@@ -31,7 +31,7 @@ export default function MobileNav() {
           className="flex flex-col items-center p-2 text-muted-foreground hover:text-primary transition-colors"
         >
           <User className="w-5 h-5 mb-1" />
-          <span className="text-[9px] font-medium uppercase tracking-wider">Bio</span>
+          <span className="text-[9px] font-medium uppercase tracking-wider">Biografia</span>
         </button>
 
         <Link href="/links">
@@ -45,7 +45,7 @@ export default function MobileNav() {
           className="flex flex-col items-center p-2 text-muted-foreground hover:text-primary transition-colors"
         >
           <Users className="w-5 h-5 mb-1" />
-          <span className="text-[9px] font-medium uppercase tracking-wider">Projeto</span>
+          <span className="text-[9px] font-medium uppercase tracking-wider">Projetos</span>
         </button>
 
         <button 
@@ -53,7 +53,7 @@ export default function MobileNav() {
           className="flex flex-col items-center p-2 text-muted-foreground hover:text-primary transition-colors"
         >
           <Building2 className="w-5 h-5 mb-1" />
-          <span className="text-[9px] font-medium uppercase tracking-wider">Infra</span>
+          <span className="text-[9px] font-medium uppercase tracking-wider">Contato</span>
         </button>
       </div>
     </div>

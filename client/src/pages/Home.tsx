@@ -83,26 +83,30 @@ function SectionTag({ children }: { children: React.ReactNode }) {
    HOME
    ══════════════════════════════════════════════════════════ */
 export default function Home() {
-  return (
-    <div className="relative min-h-screen bg-background overflow-hidden">
-      <div className="film-grain" />
+      return (
+        <div className="relative min-h-screen bg-background overflow-hidden">
+
+          <div className="film-grain" />
       <Navbar />
 
       {/* ━━━ HERO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="relative h-[100dvh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-background/30 to-background z-10" />
-          <motion.img
-            initial={{ scale: 1.15, filter: "brightness(0.90)" }}
-            animate={{ scale: 1, filter: "brightness(0.88)" }}
-            transition={{ duration: 4, ease: smooth }}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-background/75 to-background z-10" />
+            <motion.img
+            
+              initial={{ scale: 1.15, filter: "brightness(0.65)" }}
+              animate={{ scale: 1, filter: "brightness(0.40)" }}
+              transition={{ duration: 4, ease: smooth }}
+            
             src={heroImg}
             alt="D Roger"
             className="w-full h-full object-cover object-top"
-          />
-          {/* Golden Light */}
+          /><div className="hero-light" />
+          {/* Film Grain */}
+          <div className="absolute inset-0 opacity-[0.08] mix-blend-overlay pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />{/* Golden Light */}
           <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute -top-40 left-1/2 w-[900px] h-[900px] bg-primary/15 blur-[180px]" />
+            <div className="absolute -top-40 left-1/2 w-[900px] h-[900px] bg-primary/20 blur-[180px] animate-pulse" />
           </div>
         </div>
 
@@ -138,8 +142,8 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.9 }}
           >
-            18 anos de cultura hip hop, produção independente e impacto
-            territorial na Zona Sul de Natal.
+            18 anos de cultura hip hop, produção independente
+            e impacto territorial na Zona Sul de Natal.
           </motion.p>
 
           <motion.div
@@ -188,6 +192,7 @@ export default function Home() {
       <section id="bio" className="py-24 sm:py-28 md:py-36 relative">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 xl:gap-28 items-center">
+
             {/* Portrait */}
             <motion.div className="relative" {...scaleIn}>
               <div className="aspect-[3/4] sm:aspect-[4/5] relative overflow-hidden group">
@@ -254,10 +259,7 @@ export default function Home() {
       {/* ━━━ ORDEM SUL ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="py-24 sm:py-28 md:py-36 relative">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
-          <motion.div
-            className="text-center max-w-3xl mx-auto mb-16 sm:mb-20"
-            {...fadeUp}
-          >
+          <motion.div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20" {...fadeUp}>
             <SectionTag>Plataforma Cultural</SectionTag>
 
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold uppercase tracking-tight mb-6 sm:mb-8">
@@ -272,8 +274,8 @@ export default function Home() {
 
             <p className="text-muted-foreground text-base sm:text-lg font-light leading-relaxed">
               Plataforma cultural idealizada por D ROGER, estruturada como
-              núcleo híbrido de criação, formação e articulação territorial na
-              Zona Sul de Natal.
+              núcleo híbrido de criação, formação e articulação territorial
+              na Zona Sul de Natal.
             </p>
           </motion.div>
 
@@ -326,15 +328,9 @@ export default function Home() {
       <Divider />
 
       {/* ━━━ INFRAESTRUTURA ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section
-        id="infraestrutura"
-        className="py-24 sm:py-28 md:py-36 bg-card/20 relative"
-      >
+      <section id="infraestrutura" className="py-24 sm:py-28 md:py-36 bg-card/20 relative">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
-          <motion.div
-            className="mb-16 sm:mb-20 text-center max-w-3xl mx-auto"
-            {...fadeUp}
-          >
+          <motion.div className="mb-16 sm:mb-20 text-center max-w-3xl mx-auto" {...fadeUp}>
             <SectionTag>
               <Headphones className="w-3 h-3" /> Base Operacional
             </SectionTag>
@@ -432,22 +428,16 @@ export default function Home() {
       <section className="py-24 sm:py-28 md:py-36 relative overflow-hidden">
         {/* Subtle texture */}
         <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
-          <img
-            src={studioImpacto}
-            alt=""
-            className="w-full h-full object-cover"
-          />
+          <img src={studioImpacto} alt="" className="w-full h-full object-cover" />
         </div>
 
         <div className="container mx-auto px-6 md:px-12 lg:px-16 relative z-10">
-          <motion.div
-            className="text-center mb-16 sm:mb-20 max-w-3xl mx-auto"
-            {...fadeUp}
-          >
+          <motion.div className="text-center mb-16 sm:mb-20 max-w-3xl mx-auto" {...fadeUp}>
             <SectionTag>Atuação Profissional</SectionTag>
 
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold uppercase tracking-tight mb-6 sm:mb-8">
-              Arte, Produção &amp; <span className="text-primary">Impacto</span>
+              Arte, Produção &amp;{" "}
+              <span className="text-primary">Impacto</span>
             </h2>
 
             <div className="flex items-center justify-center gap-3 mb-6 sm:mb-8">
@@ -508,10 +498,8 @@ export default function Home() {
           {/* ━━━ FORMAÇÃO CULTURAL ━━━━━━━━━━━━━━━━━━━━━━━━━ */}
           <section className="py-24 sm:py-28 md:py-36 relative">
             <div className="container mx-auto px-6 md:px-12 lg:px-16">
-              <motion.div
-                className="text-center mb-16 sm:mb-20 max-w-3xl mx-auto"
-                {...fadeUp}
-              >
+
+              <motion.div className="text-center mb-16 sm:mb-20 max-w-3xl mx-auto" {...fadeUp}>
                 <SectionTag>Formação Cultural</SectionTag>
 
                 <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold uppercase tracking-tight mb-6 sm:mb-8">
@@ -519,22 +507,22 @@ export default function Home() {
                 </h2>
 
                 <p className="text-muted-foreground text-base sm:text-lg font-light leading-relaxed">
-                  Paralelamente à produção artística, D ROGER desenvolve
-                  iniciativas formativas voltadas à produção musical
-                  independente, cultura hip hop e desenvolvimento criativo de
-                  jovens artistas da Zona Sul de Natal.
+                  Paralelamente à produção artística, D ROGER desenvolve iniciativas
+                  formativas voltadas à produção musical independente, cultura hip hop
+                  e desenvolvimento criativo de jovens artistas da Zona Sul de Natal.
                 </p>
               </motion.div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
+
                 <div className="p-8 border border-border/20 bg-card/30">
                   <h3 className="uppercase text-sm tracking-[0.2em] mb-4 text-primary">
                     Beatmaker Pro
                   </h3>
                   <p className="text-muted-foreground text-sm font-light leading-[1.8]">
-                    Oficina de produção musical no FL Studio abordando criação
-                    de beats, estrutura rítmica e fundamentos de produção dentro
-                    da estética hip hop contemporânea.
+                    Oficina de produção musical no FL Studio abordando criação de beats,
+                    estrutura rítmica e fundamentos de produção dentro da estética
+                    hip hop contemporânea.
                   </p>
                 </div>
 
@@ -543,9 +531,8 @@ export default function Home() {
                     Laboratório Criativo
                   </h3>
                   <p className="text-muted-foreground text-sm font-light leading-[1.8]">
-                    Espaço de experimentação artística onde participantes
-                    desenvolvem composições, beats e projetos autorais
-                    conectados à cultura urbana.
+                    Espaço de experimentação artística onde participantes desenvolvem
+                    composições, beats e projetos autorais conectados à cultura urbana.
                   </p>
                 </div>
 
@@ -554,22 +541,23 @@ export default function Home() {
                     Cultura Hip Hop
                   </h3>
                   <p className="text-muted-foreground text-sm font-light leading-[1.8]">
-                    Vivências culturais abordando história, identidade e impacto
-                    social do movimento hip hop nas periferias brasileiras.
+                    Vivências culturais abordando história, identidade e impacto social
+                    do movimento hip hop nas periferias brasileiras.
                   </p>
                 </div>
+
               </div>
+
             </div>
           </section>
           <Divider />
 
           {/* ━━━ REGISTRO ARTÍSTICO ━━━━━━━━━━━━━━━━━━━━━━━ */}
           <section className="py-24 sm:py-28 md:py-36 bg-card/20 relative">
+
             <div className="container mx-auto px-6 md:px-12 lg:px-16">
-              <motion.div
-                className="text-center mb-16 sm:mb-20 max-w-3xl mx-auto"
-                {...fadeUp}
-              >
+
+              <motion.div className="text-center mb-16 sm:mb-20 max-w-3xl mx-auto" {...fadeUp}>
                 <SectionTag>Registro Artístico</SectionTag>
 
                 <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold uppercase tracking-tight mb-6 sm:mb-8">
@@ -577,21 +565,24 @@ export default function Home() {
                 </h2>
 
                 <p className="text-muted-foreground text-base sm:text-lg font-light leading-relaxed">
-                  Registros visuais de apresentações, produção musical e
-                  encontros culturais que marcam a trajetória de D ROGER na cena
-                  independente.
+                  Registros visuais de apresentações, produção musical e encontros
+                  culturais que marcam a trajetória de D ROGER na cena independente.
                 </p>
               </motion.div>
 
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+
                 <div className="aspect-square bg-card border border-border/20"></div>
                 <div className="aspect-square bg-card border border-border/20"></div>
                 <div className="aspect-square bg-card border border-border/20"></div>
                 <div className="aspect-square bg-card border border-border/20"></div>
                 <div className="aspect-square bg-card border border-border/20"></div>
                 <div className="aspect-square bg-card border border-border/20"></div>
+
               </div>
+
             </div>
+
           </section>
           {/* Metrics */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
@@ -647,14 +638,12 @@ export default function Home() {
       {/* ━━━ CONTRATANTES & EDITAIS ━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="py-24 sm:py-28 md:py-36 bg-card/20 relative">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
-          <motion.div
-            className="text-center mb-16 sm:mb-20 max-w-3xl mx-auto"
-            {...fadeUp}
-          >
+          <motion.div className="text-center mb-16 sm:mb-20 max-w-3xl mx-auto" {...fadeUp}>
             <SectionTag>Para Contratantes &amp; Instituições</SectionTag>
 
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold uppercase tracking-tight mb-6 sm:mb-8">
-              Disponibilidade <span className="text-primary">Profissional</span>
+              Disponibilidade{" "}
+              <span className="text-primary">Profissional</span>
             </h2>
 
             <div className="flex items-center justify-center gap-3 mb-6 sm:mb-8">
@@ -779,11 +768,10 @@ export default function Home() {
               A nova fase consolida uma trajetória artística organizada em base
               técnica, institucional e estratégica. O Projeto Ordem Sul avança
               como núcleo de produção, formação e expansão territorial.
-              <br />
-              <br />
+              <br /><br />
               <span className="text-foreground/70 font-normal">
-                Para contratantes, parceiros e instituições — este é o momento
-                de construir junto.
+                Para contratantes, parceiros e instituições —
+                este é o momento de construir junto.
               </span>
             </p>
 
@@ -810,20 +798,19 @@ export default function Home() {
       </section>
 
       {/* ━━━ FOOTER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <footer
-        id="contato"
-        className="py-24 sm:py-28 border-t border-border/20 relative bg-background"
-      >
+      <footer id="contato" className="py-24 sm:py-28 border-t border-border/20 relative bg-background">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-14 sm:gap-16 mb-16 sm:mb-20">
+
             {/* Contact info */}
             <motion.div {...fadeUp}>
               <SectionTag>Contato</SectionTag>
 
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold uppercase tracking-tight mb-4">
-                Contato <span className="text-primary">Profissional</span>
+                Contato{" "}
+                <span className="text-primary">Profissional</span>
               </h2>
               <p className="text-muted-foreground font-light mb-10 sm:mb-12 max-w-md text-sm sm:text-base">
                 Para propostas de shows, workshops, produções musicais ou
@@ -889,11 +876,7 @@ export default function Home() {
             </motion.div>
 
             {/* Social + Badge */}
-            <motion.div
-              {...fadeUp}
-              transition={{ delay: 0.15 }}
-              className="flex flex-col justify-between"
-            >
+            <motion.div {...fadeUp} transition={{ delay: 0.15 }} className="flex flex-col justify-between">
               <div>
                 <h3 className="text-lg sm:text-xl font-display font-bold uppercase tracking-wide mb-6 sm:mb-8">
                   Redes Sociais
@@ -945,10 +928,7 @@ export default function Home() {
 
           {/* Bottom bar */}
           <div className="flex flex-col md:flex-row items-center justify-between pt-8 sm:pt-10 border-t border-border/15 text-[10px] text-muted-foreground/50 uppercase tracking-[0.2em]">
-            <p>
-              © {new Date().getFullYear()} D ROGER. Todos os direitos
-              reservados.
-            </p>
+            <p>© {new Date().getFullYear()} D ROGER. Todos os direitos reservados.</p>
             <p className="mt-3 md:mt-0">Direção Artística — D ROGER</p>
           </div>
         </div>

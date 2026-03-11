@@ -71,12 +71,23 @@
 @layer base {
   * {
     @apply border-border;
+    -webkit-tap-highlight-color: transparent;
   }
   body {
     @apply font-sans antialiased bg-background text-foreground overflow-x-hidden;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-display tracking-tight;
+  }
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+  button:active {
+    background: radial-gradient(circle, rgba(255,215,0,0.1), transparent);
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.25;
+    mix-blend-mode: screen;
   }
   
   /* Custom scrollbar for webkit */
@@ -118,129 +129,4 @@
   opacity: 0.15;
   pointer-events: none;
   z-index: -1;
-}
-/* FILM GRAIN CINEMATOGRÁFICO */
-
-.film-grain {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.05;
-  z-index: 1;
-  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-}/* ───────────────────────────── */
-/* CINEMATIC EFFECTS */
-/* ───────────────────────────── */
-
-/* FILM GRAIN MELHORADO */
-.film-grain {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.05;
-  z-index: 1;
-  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-  animation: grainMove 8s steps(10) infinite;
-}
-
-@keyframes grainMove {
-  0%,100% { transform:translate(0,0) }
-  10% { transform:translate(-5%,-10%) }
-  20% { transform:translate(-15%,5%) }
-  30% { transform:translate(7%,-25%) }
-  40% { transform:translate(-5%,25%) }
-  50% { transform:translate(-15%,10%) }
-  60% { transform:translate(15%,0%) }
-  70% { transform:translate(0%,15%) }
-  80% { transform:translate(3%,35%) }
-  90% { transform:translate(-10%,10%) }
-}
-
-
-/* LUZ DOURADA CINEMATOGRÁFICA */
-.hero-light {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(circle at 50% 0%, rgba(212,175,55,0.25), transparent 60%);
-  filter: blur(120px);
-  animation: heroGlow 8s ease-in-out infinite alternate;
-}
-
-@keyframes heroGlow {
-  from {
-    opacity: 0.3;
-    transform: scale(1);
-  }
-  to {
-    opacity: 0.6;
-    transform: scale(1.1);
-  }
-}
-
-
-/* SCROLL REVEAL CINEMÁTICO */
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 1s cubic-bezier(.22,1,.36,1);
-}
-
-.scroll-reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* CARD HOVER EFFECT */
-.card-hover {
-  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.card-hover:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
-}
-
-/* APPLE STYLE MICRO UI DETAILS */
-html {
-  scroll-behavior: smooth;
-}
-
-::selection {
-  background: hsl(var(--primary));
-  color: black;
-}
-
-/* GOLD ANIMATED TEXT STYLE */
-.gold-glow {
-  background: linear-gradient(
-    90deg,
-    #FFD700,
-    #FFB700,
-    #FFD700
-  );
-  background-size: 200%;
-  animation: goldFlow 6s linear infinite;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-@keyframes goldFlow {
-  0% {
-    background-position: 0%;
-  }
-  100% {
-    background-position: 200%;
-  }
-}
-
-/* FILM GRAIN EFFECT */
-.film-grain::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: url("https://grainy-gradients.vercel.app/noise.svg");
-  opacity: 0.03;
-  pointer-events: none;
-  z-index: 50;
 }
