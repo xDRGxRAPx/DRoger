@@ -73,6 +73,7 @@ export default function Navbar() {
           <button
             className="md:hidden text-foreground"
             onClick={() => setMobileMenuOpen(true)}
+            aria-label="Abrir menu"
           >
             <Menu className="w-6 h-6" />
           </button>

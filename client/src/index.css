@@ -81,13 +81,27 @@
   }
   button {
     -webkit-tap-highlight-color: transparent;
+    position: relative;
+    overflow: visible;
   }
-  button:active {
-    background: radial-gradient(circle, rgba(255,215,0,0.1), transparent);
+  button::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  button:active::after {
+    width: 200px;
+    height: 200px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     border-radius: 50%;
-    filter: blur(80px);
+    background: radial-gradient(circle, rgba(255,215,0,0.15), transparent);
+    filter: blur(100px);
     opacity: 0.25;
     mix-blend-mode: screen;
+    pointer-events: none;
   }
   
   /* Custom scrollbar for webkit */

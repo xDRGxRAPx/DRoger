@@ -90,7 +90,7 @@ export default function Home() {
       <Navbar />
 
       {/* ━━━ HERO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="relative h-[100dvh] flex items-center justify-center overflow-hidden">
+      <section id="inicio" className="relative h-[100dvh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-background/75 to-background z-10" />
             <motion.img
@@ -257,7 +257,7 @@ export default function Home() {
       <Divider />
 
       {/* ━━━ ORDEM SUL ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
-      <section className="py-24 sm:py-28 md:py-36 relative">
+      <section id="projetos" className="py-24 sm:py-28 md:py-36 relative">
         <div className="container mx-auto px-6 md:px-12 lg:px-16">
           <motion.div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20" {...fadeUp}>
             <SectionTag>Plataforma Cultural</SectionTag>
