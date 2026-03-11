@@ -952,7 +952,38 @@ export default function Home() {
       </footer>
 
       <div id="releases" className="hidden" />
-      <MobileNav />
+      <MobileNav />      {/* ✅ Barra Navegação Inferior Mobile */}
+          <motion.div 
+            initial={{ y: 100 }}
+            animate={{ y: 0 }}
+            transition={{ delay: 2, ease: smooth }}
+            className="md:hidden fixed bottom-0 left-0 right-0 z-40 px-4 pb-2 pt-3 bg-black/85 backdrop-blur-xl border-t border-white/5"
+          >
+            <div className="grid grid-cols-4 gap-1">
+
+              {[
+                { icon: <Home size={18} />, label: "Início",   action: () => window.scrollTo({top:0, behavior:'smooth'}) },
+                { icon: <User size={18} />, label: "Bio",      action: () => scrollTo("bio") },
+                { icon: <Users size={18} />, label: "Projeto", action: () => scrollTo("ordemsul") },
+                { icon: <Mail size={18} />,  label: "Contato", action: () => scrollTo("contato") },
+              ].map((item, i) => (
+                <button 
+                  key={i}
+                  onClick={item.action}
+                  className="flex flex-col items-center gap-1 py-2 text-muted-foreground hover:text-primary transition-all duration-200 active:scale-0.95"
+                >
+                  {item.icon}
+                  <span className="text-[10px] uppercase tracking-[0.1em] font-medium">{item.label}</span>
+                </button>
+              ))}
+
+            </div>
+          </motion.div>
+
+          <MobileNav />
+          </div>
+          )
+          }
     </div>
   );
 }
