@@ -153,3 +153,6 @@ html {
   background: hsl(var(--primary));
   color: black;
 }
+video {
+  object-fit: cover;
+}

@@ -1,3 +1,10 @@
+import drgPerfil from "@/assets/images/DRG PERFIL.jpeg";
+import ordemSul from "@/assets/images/Ordemsul.jpeg";
+import capaOrdem from "@/assets/images/CAPA ORDEMSUL 13.jpeg";
+
+import hipocrisia from "@/assets/images/HIPOCRISI.mp4";
+import nesseMundo from "@/assets/images/NESSE MUNDO NAO HÁ.mov";
+import nordesteTopo from "@/assets/images/NOSTESTE É O TOPO.mp4";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
 import { useEffect, useState } from "react";
@@ -88,6 +95,17 @@ export default function Home() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
+  const [viewer, setViewer] = useState<{
+    src: string;
+    type: "image" | "video";
+  } | null>(null);
+  useEffect(() => {
+    if (viewer) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [viewer]);
   const smoothX = useSpring(mouseX, { damping: 50, stiffness: 400, mass: 0.5 });
   const smoothY = useSpring(mouseY, { damping: 50, stiffness: 400, mass: 0.5 });
 
@@ -474,7 +492,7 @@ export default function Home() {
       </section>
 
       <Divider />
-
+          
       {/* ━━━ ATUAÇÃO + MÉTRICAS ━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="py-24 sm:py-28 md:py-36 relative overflow-hidden">
         {/* Subtle texture */}
@@ -546,6 +564,7 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+    
           {/* ━━━ FORMAÇÃO CULTURAL ━━━━━━━━━━━━━━━━━━━━━━━━━ */}
           <section className="py-24 sm:py-28 md:py-36 relative">
             <div className="container mx-auto px-6 md:px-12 lg:px-16">
@@ -602,7 +621,7 @@ export default function Home() {
             </div>
           </section>
           <Divider />
-
+        
           {/* ━━━ REGISTRO ARTÍSTICO ━━━━━━━━━━━━━━━━━━━━━━━ */}
           <section className="py-24 sm:py-28 md:py-36 bg-card/20 relative">
 
@@ -621,22 +640,106 @@ export default function Home() {
                 </p>
               </motion.div>
 
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
 
-                <div className="aspect-square bg-card border border-border/20"></div>
-                <div className="aspect-square bg-card border border-border/20"></div>
-                <div className="aspect-square bg-card border border-border/20"></div>
-                <div className="aspect-square bg-card border border-border/20"></div>
-                <div className="aspect-square bg-card border border-border/20"></div>
-                <div className="aspect-square bg-card border border-border/20"></div>
+              {[
+                { type: "image", src: drgPerfil, title: "DRG PERFIL", color: "from-green-900/80" },
+                { type: "video", src: nesseMundo, title: "NESSE MUNDO NÃO HÁ", color: "from-red-900/80" },
+                { type: "video", src: hipocrisia, title: "HIPOCRISIA", color: "from-blue-900/80" },
+                { type: "video", src: nordesteTopo, title: "NORDESTE É O TOPO", color: "from-yellow-700/80" },
+                { type: "image", src: ordemSul, title: "ORDEM SUL", color: "from-pink-900/80" },
+                { type: "image", src: capaOrdem, title: "CAPA ORDEM SUL 13", color: "from-black/90" },
+              ].map((item, i) => (
+
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: i * 0.1 }}
+                  viewport={{ once: true }}
+                  className="relative aspect-square overflow-hidden group rounded-xl"
+                >
+
+                  {/* MEDIA */}
+                  {item.type === "image" ? (
+                    <img
+                      src={item.src}
+                      alt={item.title}
+                      className="w-full h-full object-cover 
+                      scale-100 group-hover:scale-110 
+                      transition duration-700 ease-out 
+                      contrast-110 brightness-90"
+                    />
+                  ) : (
+                    <div className="relative w-full h-full group-hover:scale-110 transition duration-700 ease-out">
+                      {/* Video Player overlay */}
+                      <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 scale-90 group-hover:scale-100">
+                        <div className="w-16 h-16 rounded-full bg-primary/20 backdrop-blur-md border border-primary/50 flex items-center justify-center text-primary shadow-[0_0_30px_rgba(200,150,50,0.4)]">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 5V19L19 12L8 5Z" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </div>
+                      </div>
+                      
+                      <video
+                        src={item.src}
+                        muted
+                        loop
+                        playsInline
+                        preload="metadata"
+
+                        onMouseEnter={(e) => {
+                          const v = e.currentTarget;
+                          v.preload = "auto";
+                          v.play().catch(() => {});
+                        }}
+
+                        onMouseLeave={(e) => {
+                          e.currentTarget.pause();
+                        }}
+
+                        onTouchStart={(e) => {
+                          const v = e.currentTarget;
+                          v.preload = "auto";
+                          if (v.paused) {
+                            v.play().catch(() => {});
+                          }
+                        }}
+
+                        className="w-full h-full object-cover contrast-110 brightness-90"
+                        onClick={() =>
+                          setViewer({ src: item.src as string, type: "video" })
+                        }
+                      />
+                    </div>
+                  )}
+
+                  {/* OVERLAY CINEMÁTICO */}
+                  <div className={`absolute inset-0 bg-gradient-to-t ${item.color} via-black/30 to-transparent`} />
+
+                  {/* GRAIN EFFECT */}
+                  <div className="absolute inset-0 opacity-20 mix-blend-overlay pointer-events-none bg-[url('/grain.png')]" />
+
+                  {/* TEXTO */}
+                  <div className="absolute bottom-4 left-4 right-4 z-10">
+                    <p className="text-white text-sm font-semibold tracking-widest uppercase">
+                      {item.title}
+                    </p>
+                  </div>
+
+                  {/* HOVER DARK */}
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-500" />
+
+                </motion.div>
+              ))}
+
+                </div>
 
               </div>
+            </section>
 
-            </div>
-
-          </section>
-          {/* Metrics */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+              {/* Metrics */}
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {[
               {
                 icon: <TrendingUp className="w-3.5 h-3.5" />,
@@ -986,6 +1089,50 @@ export default function Home() {
       </footer>
 
       <div id="releases" className="hidden" />
+            
+          {viewer && (
+            <div
+              className="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center"
+              onClick={() => setViewer(null)}
+            >
+              {/* BOTÃO FECHAR */}
+              <button
+                className="absolute top-6 right-6 z-[10000] text-white text-2xl"
+                onClick={() => setViewer(null)}
+              >
+                ✕
+              </button>
+
+              {/* CONTEÚDO */}
+              <div
+                className="w-full h-full flex items-center justify-center p-4 relative"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Glow Background for Viewer */}
+                <div className="absolute inset-0 z-0 bg-primary/5 blur-[150px] pointer-events-none rounded-full" />
+                
+                {viewer.type === "video" ? (
+                  <div className="relative w-full max-w-5xl aspect-video rounded-xl overflow-hidden shadow-[0_0_80px_rgba(0,0,0,0.8),_0_0_40px_rgba(200,150,50,0.15)] bg-black z-10 border border-border/30">
+                    <video
+                      src={viewer.src}
+                      controls
+                      autoPlay
+                      playsInline
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                ) : (
+                  <div className="relative max-w-full max-h-full rounded-xl overflow-hidden shadow-[0_0_80px_rgba(0,0,0,0.8),_0_0_40px_rgba(200,150,50,0.15)] z-10 border border-border/30">
+                    <img
+                      src={viewer.src}
+                      alt=""
+                      className="max-w-full max-h-[90vh] object-contain"
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
       <MobileNav />
     </div>
   );
